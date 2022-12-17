@@ -1,0 +1,21 @@
+{
+  "name": "playwright-assessment-esquivel",
+  "version": "1.0.0",
+  "description": "Test",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Esquivelgit/playwright-assessment-esquivel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Esquivelgit/playwright-assessment-esquivel/issues"
+  },
+  "homepage": "https://github.com/Esquivelgit/playwright-assessment-esquivel#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.29.0"
+  }
+}
