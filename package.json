@@ -16,6 +16,11 @@
   },
   "homepage": "https://github.com/Esquivelgit/playwright-assessment-esquivel#readme",
   "devDependencies": {
-    "@playwright/test": "^1.29.0"
+    "@faker-js/faker": "^7.6.0",
+    "@playwright/test": "^1.29.0",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "eslint": "^8.30.0",
+    "eslint-plugin-playwright": "^0.11.2"
   }
 }
