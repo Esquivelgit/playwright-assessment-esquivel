@@ -1,8 +1,11 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Company Selection tests", () => {
-  test("Clicking Plooto Inc leads to dashboard", async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto("/company_select");
+  });
+
+  test("Clicking Plooto Inc leads to dashboard", async ({ page }) => {
     const rows = await page.locator("tr");
     const plootoRow = await rows
       .locator(":scope", { hasText: "Plooto Inc" })
