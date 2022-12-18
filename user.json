@@ -1,0 +1,6 @@
+{
+    "user" {
+        "invalid_email": "email12.com",
+        "invalid_password": "password"
+    }
+}
