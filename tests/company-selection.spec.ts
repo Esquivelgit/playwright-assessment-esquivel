@@ -13,9 +13,9 @@ test.describe('Company Selection tests', () => {
     companySelectionPage = new CompanySelectionPage(page);
     const plutoIncRowText = await companySelectionPage.getPlutoIncRow.textContent();
 
-    await expect.soft(plutoIncRowText).toContain('Plooto Inc');
-    await expect(plutoIncRowText).toContain('Subscription Active');
-    await expect(plutoIncRowText).not.toContain('Verification In Progress');
+    expect.soft(plutoIncRowText).toContain('Plooto Inc');
+    expect(plutoIncRowText).toContain('Subscription Active');
+    expect(plutoIncRowText).not.toContain('Verification In Progress');
 
     //Click Ploot inc and validate redirection to dashboard
     await companySelectionPage.getPlutoIncRow.click();

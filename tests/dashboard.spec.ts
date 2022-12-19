@@ -1,26 +1,21 @@
 import { test, expect } from '@playwright/test';
+import { DashboardPage } from '../pages/dashboard-page';
 
 test.describe('Dashboard tests', () => {
+  let dashboardPage;
   test('Dashboard - verify payment approvals', async ({ page }) => {
-    await page.goto('/dashboard');
-    const dashboardText = await page.locator(
-      'a:has-text("Click here to finish company verification steps and unlock the full power of Plooto.")'
-    );
-    const paymentsAwaitingApproval = await page.getByRole('tab', {
-      name: 'Payments Awaiting My Approval',
-    });
-    const pendingPayables = await page.getByRole('tab', {
-      name: 'Pending Payables',
-    });
+    const dashboardPage = new DashboardPage(page);
 
-    await expect(dashboardText).toBeVisible();
+    await dashboardPage.navigation();
+    await page.pause();
+    await expect(dashboardPage.finishVerificationText).toBeVisible();
 
     //click payment approvals
-    await page.locator('a:has-text("Payment Approvals")').click();
-    await expect(paymentsAwaitingApproval).toBeVisible();
+    await dashboardPage.paymentApprovalsLink.click();
+    await expect(page).toHaveURL(/.*payment_approvals/);
 
     //click pending payments
-    await page.locator('a:has-text("Pending Payments")').click();
-    await expect(pendingPayables).toBeVisible();
+    await dashboardPage.pendingPaymentsLink.click();
+    await expect(page).toHaveURL(/.*pending_payments/);
   });
 });
