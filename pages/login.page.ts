@@ -1,5 +1,5 @@
 // playwright-dev-page.ts
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page } from '@playwright/test';
 
 export class LoginPage {
   readonly page: Page;
@@ -17,13 +17,13 @@ export class LoginPage {
     this.passwordInput = page.locator('[type="password"]');
     this.getSignInBtn = page.locator('.btn-success-green:has-text("Sign In")');
     this.signIntuitBtn = page.locator('[title="Sign in with Intuit"]');
-    this.forgotPassword = page.locator("text=Forgot password?");
+    this.forgotPassword = page.locator('text=Forgot password?');
     this.signInText = page.locator('p:text("Sign into your account below")');
-    this.signUpLink = page.getByRole("link", { name: "Sign Up" });
+    this.signUpLink = page.getByRole('link', { name: 'Sign Up' });
   }
 
   async navigation() {
-    await this.page.goto("/login");
+    await this.page.goto('/login');
   }
 
   async login(email, password) {

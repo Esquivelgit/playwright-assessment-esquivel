@@ -1,16 +1,16 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 
-test.describe("Dashboard tests", () => {
-  test("Dashboard - verify payment approvals", async ({ page }) => {
-    await page.goto("/dashboard");
+test.describe('Dashboard tests', () => {
+  test('Dashboard - verify payment approvals', async ({ page }) => {
+    await page.goto('/dashboard');
     const dashboardText = await page.locator(
       'a:has-text("Click here to finish company verification steps and unlock the full power of Plooto.")'
     );
-    const paymentsAwaitingApproval = await page.getByRole("tab", {
-      name: "Payments Awaiting My Approval",
+    const paymentsAwaitingApproval = await page.getByRole('tab', {
+      name: 'Payments Awaiting My Approval',
     });
-    const pendingPayables = await page.getByRole("tab", {
-      name: "Pending Payables",
+    const pendingPayables = await page.getByRole('tab', {
+      name: 'Pending Payables',
     });
 
     await expect(dashboardText).toBeVisible();
