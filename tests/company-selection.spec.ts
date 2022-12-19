@@ -1,25 +1,24 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
+import { CompanySelectionPage } from '../pages/company-selection-page';
 
-test.describe("Company Selection tests", () => {
+test.describe('Company Selection tests', () => {
+  let companySelectionPage;
+
   test.beforeEach(async ({ page }) => {
-    await page.goto("/company_select");
+    companySelectionPage = new CompanySelectionPage(page);
+    await companySelectionPage.navigation();
   });
 
-  test("Clicking Plooto Inc leads to dashboard", async ({ page }) => {
-    const rows = await page.locator("tr");
-    const plootoRow = await rows
-      .locator(":scope", { hasText: "Plooto Inc" })
-      .first();
+  test('Clicking Plooto Inc leads to dashboard', async ({ page }) => {
+    companySelectionPage = new CompanySelectionPage(page);
+    const plutoIncRowText = await companySelectionPage.getPlutoIncRow.textContent();
 
-    await expect(await plootoRow.textContent()).toContain("Plooto Inc");
-    await expect(await plootoRow.textContent()).toContain(
-      "Subscription Active"
-    );
+    expect.soft(plutoIncRowText).toContain('Plooto Inc');
+    expect(plutoIncRowText).toContain('Subscription Active');
+    expect(plutoIncRowText).not.toContain('Verification In Progress');
 
-    //click Plooto
-    await plootoRow.click();
-
-    //Validate redirection to dashbaord
+    //Click Ploot inc and validate redirection to dashboard
+    await companySelectionPage.getPlutoIncRow.click();
     await expect(page).toHaveURL(/.*dashboard/);
   });
 });
