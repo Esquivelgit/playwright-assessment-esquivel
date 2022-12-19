@@ -20,6 +20,6 @@ test.describe('Payment Approval tests', () => {
     await paymentApproval.deleteBtn.click();
 
     //Assert user is given a warning before deleting payment details
-    await expect(page.locator('.alert')).toContain('Are you sure you want to delete?');
+    expect(page.locator('.alert')).toContain('Are you sure you want to delete?');
   });
 });

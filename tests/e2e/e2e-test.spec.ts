@@ -8,7 +8,7 @@ import { PaymentApprovalPayables } from '../../pages/payment-approval-page';
 import { faker } from '@faker-js/faker';
 
 test.describe('End to End Scenario', () => {
-  test('E2E workflow', async ({ page }) => {
+  test('Assumed E2E workflow', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const dashboard = new DashboardPage(page);
     const navbar = new Navbar(page);
@@ -16,28 +16,34 @@ test.describe('End to End Scenario', () => {
     const pendingPayments = new PendingPaymentsPage(page);
     const paymentApprovalPayables = new PaymentApprovalPayables(page);
 
-    //login
+    //Login page and generate random email and password
     await loginPage.navigation();
-    //Generate random email and password
     await loginPage.login(faker.internet.email(), faker.internet.password());
 
-    //Click Plooto Inc
+    //Search and click Plooto Inc
+    await expect(page).toHaveURL(/.*company_select/);
+    await companySelection.searchInput.fill('Pluto Inc');
     await companySelection.getPlutoIncRow.click();
 
-    //dashboard click payment approvals link
+    //Dashboard click payment approvals link
+    await expect(page).toHaveURL(/.*dashboard/);
+    await expect(dashboard.finishVerificationText).toBeVisible();
     await dashboard.paymentApprovalsLink.click();
 
     //dashboard click pending payments link
+    await expect(page).toHaveURL(/.*payment_approvals/);
     await dashboard.pendingPaymentsLink.click();
 
     //pending payments click cavages
+    await expect(page).toHaveURL(/.*pending_payments/);
+    await expect(pendingPayments.cavagesRow).toBeVisible();
     await pendingPayments.cavagesRow.click();
 
     //Payment approval page assertions
-    await expect(await page).toHaveURL(/.*payment_approval/);
-    await expect(await paymentApprovalPayables.approvalHistoryRow).toContainText(
-      'Approval Mandatory'
-    );
+    await expect(page).toHaveURL(/.*payment_approval/);
+    await expect(paymentApprovalPayables.approvalHistoryRow).toContainText('Approval Mandatory');
     await paymentApprovalPayables.approveBtn.click();
+
+    //From here we assume the approval button is functional and "Approval Mandatory" status changes to "Approved"
   });
 });
