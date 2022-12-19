@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Test",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "allure-report": "npx allure generate allure-results --clean && npx allure open",
+    "e2e": " npx playwright test e2e"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Esquivelgit/playwright-assessment-esquivel.git"
@@ -20,6 +23,8 @@
     "@playwright/test": "^1.29.0",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",
+    "allure-commandline": "^2.20.1",
+    "allure-playwright": "^2.0.0-beta.21",
     "eslint": "^8.30.0",
     "eslint-plugin-playwright": "^0.11.2",
     "prettier": "^2.8.1"
