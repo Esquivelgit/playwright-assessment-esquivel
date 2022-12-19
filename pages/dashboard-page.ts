@@ -5,6 +5,7 @@ export class DashboardPage {
   readonly page: Page;
   readonly setupPaymentsLink: Locator;
   readonly paymentApprovalsLink: Locator;
+  readonly paymentApprovalsCount: Locator;
   readonly pendingPaymentsLink: Locator;
   readonly completedPaymentsLink: Locator;
   readonly foreignExchangeCalcLink: Locator;
@@ -13,11 +14,13 @@ export class DashboardPage {
   readonly feedbackSubmitBtn: Locator;
   readonly finishVerificationText: Locator;
   readonly onboardingPanel: Locator;
+  readonly activeClassLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.setupPaymentsLink = page.getByRole('link', { name: 'Set Up Payments' });
     this.paymentApprovalsLink = page.getByRole('link', { name: 'Payment Approvals' });
+    this.paymentApprovalsCount = this.paymentApprovalsLink.locator('.badge');
     this.pendingPaymentsLink = page.getByRole('link', { name: 'Pending Payments' });
     this.completedPaymentsLink = page.getByRole('link', { name: 'Completed Payments' });
     this.foreignExchangeCalcLink = page.getByRole('link', { name: 'Foreign Exchange Calculator' });
@@ -32,6 +35,8 @@ export class DashboardPage {
     this.onboardingPanel = page.locator(
       '#components-user-onboarding-verifications-outstandingVerificationItems'
     );
+
+    this.activeClassLink = page.locator('#nav-top-left >> [class="active"]');
   }
 
   async navigation() {

@@ -26,7 +26,7 @@ export class PaymentApprovalPayables {
     this.rejectBtn = page.getByRole('button', { name: 'Reject' });
     this.pymntApprovalHistory = page.locator('#components-user-payments-paymentApprovalHistory');
     this.approvalHistoryRow = page.locator(
-      '#components-user-payments-paymentApprovalHistory >> td'
+      '#components-user-payments-paymentApprovalHistory >> .details-container'
     );
     this.auditTrail = page.locator('#components-user-auditLogs-auditLogsList');
     this.paymentLineItems = page.locator('#components-user-payments-paymentLineItems');
