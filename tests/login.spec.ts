@@ -16,9 +16,7 @@ test.describe('Login tests', () => {
     await loginPage.getSignInBtn.click();
 
     //Assert with assumption that alert surfaces to enter a valid email address
-    await expect(page.locator('[class=invalid_email"]')).toContain(
-      'Please enter a valid email address'
-    );
+    expect(page.locator('[class=invalid_email"]')).toContain('Please enter a valid email address');
   });
 
   test('Invalid password credentials ', async ({ page }) => {
@@ -27,14 +25,14 @@ test.describe('Login tests', () => {
     await loginPage.getSignInBtn.click();
 
     //Assert with assumption that alert surfaces to enter a valid password format
-    await expect(page.locator('[class=invalid_email"]')).toContain('Please enter a valid password');
+    expect(page.locator('[class=invalid_email"]')).toContain('Please enter a valid password');
   });
 
   test('Cannot login with empty email and password fields', async ({ page }) => {
     await loginPage.getSignInBtn.click(); //skip entering email and password
 
     //Assert with assumption that alert surfaces telling user both fields cannot be blank
-    await expect(page.locator('[class=invalid_email"]')).toContain(
+    expect(page.locator('[class=invalid_email"]')).toContain(
       'Email and Password can not be blank!'
     );
   });
